@@ -1,4 +1,4 @@
-# ti.piwik
+# ti.piwik [![gittio](http://img.shields.io/badge/gittio-0.1.0-00B4CC.svg)](http://gitt.io/component/ti.piwik)
 > Piwik Analytics Module for Titanium
 
 ## Description
@@ -7,7 +7,14 @@ This module enables Titanium Apps to integrate [Piwik](http://piwik.org/) Analyt
 
 It is heavily based on Piwiks own implementation in their App [Piwik Mobile 2 App](https://github.com/piwik/piwik-mobile-2). This CommonJs Module provides the functionality of the Tracker but makes it working on every Titanium App. Admittedly, it is not well tested yet. Any contribution is very welcome.
 
-## Usage
+## Quick Start
+
+### Installation 
+Download the latest distribution ZIP-file and consult the [Titanium Documentation](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_a_Module) on how install it, or simply use the [gitTio CLI](http://gitt.io/cli):
+
+`$ gittio install ti.piwik`
+
+### Usage
 
 To access this module and create a tracker, you would do the following:
 
@@ -36,64 +43,127 @@ tracker.trackEvent({
 
 The Module returns a Tracker function object. When creating a new tracker instance, you can pass a configuration object to the constructor.
 
+```javascript
+var tracker = new Piwik( config );
+```
+
 Configurable options are:
 
-* `enabled` _(boolean)_ 
+##### config.enabled `boolean`
   
   Whether tracking is enabled or disabled
 
-* `siteId` _(Number)_ 
+##### config.siteId `Number`
 
   The siteId of the Piwik Server installation. It'll track everything into this site
 
-* `apiVersion` _(Number)_ 
+##### config.apiVersion `Number`
 
   The api version of the Piwik Server installation.
 
-* `baseUrl` _(String)_ 
+##### config.baseUrl `String`
 
   This is the baseUrl which will be prepended to absolute/relative paths. If you set - for example - the current Url to '/x/y' it will prepend this url. This makes sure we have a uri including protocol and so on.
 
-* `piwikServerUrl` _(String)_
+##### config.piwikServerUrl `String`
 
   The Url of the Piwik Server. The Tracker will send its requests to this Piwik instance.
 
-* `maxTracksPerDay` _(Number)_
+##### config.maxTracksPerDay `Number`
 
   This defines a maximum of tracks per day. Set maxTracksPerDay to 0 for unlimited tracks per day.
 
+---
 ### Tracker
-#### Properties
+#### _Properties_
 
-* `tracker.siteId` The siteId of the Piwik Server installation. It'll track everything into this site.
+##### tracker.siteId
+The siteId of the Piwik Server installation. It'll track everything into this site.
 
-* `tracker.apiVersion`
+##### tracker.apiVersion
 The api version of the Piwik Server installation.
 
-#### Methods
+#### _Methods_
 
-* `tracker.init( )`
+##### tracker.isEnabled( )
+Detects whether tracking is enabled or disabled.
 
-* `tracker.isEnabled( )`
+returns `boolean` - true if tracking is enabled, false otherwise.
 
-* `tracker.isError( )`
+##### tracker.isError( `error` )
+A simple way to check whether a variable is an Error (exception).
 
-* `tracker.prepareVisitCustomVariables( )`
+  * `error` _{null|function|string|number|boolean|Object|Array}_ - error
+  
+returns `boolean` - wether it is an error or not.
 
-* `tracker.setCurrentUrl( )`
+##### tracker.prepareVisitCustomVariables( )
+Prepare visit scope custom variables to send them with the next page view.
 
-* `tracker.setCustomVariable( )`
+##### tracker.setCurrentUrl( `url` )
+Sets (overrides) the current url.
 
-* `tracker.setDocumentTitle( )`
+  * `url` _{string}_ An absolute url without protocol and so on.
 
-* `tracker.trackEvent( )`
+returns the `tracker`.
 
-* `tracker.trackException( )`
+##### tracker.setCustomVariable( `index`, `name`, `value`, `scope` )
+Set custom variable within this visit. All set custom variables will be recognized in the next tracking and reset afterwards.
 
-* `tracker.trackGoal( )`
+  * `index` _{number}_ - The index of the custom variable
+  * `name` _{string}_ - The number of the custom variable
+  * `value` _{string}_ - The value of the custom variable
+  * `scope` _{string}_ - Either 'page' or 'visit' scope.
+    - `"visit"` will store the name/value in the visit and will persist it in the cookie for the duration of the visit
+    - `"page"` will store the name/value in the page view.
 
-* `tracker.trackLink( )`
+##### tracker.setDocumentTitle( `title` )
+Sets (overrides) the document title.
 
-* `tracker.trackPageView( )`
+  * `title` _{string}_ - title
+  
+returns the `tracker`.
 
-* `tracker.trackWindow( )`
+##### tracker.trackEvent( `event` )
+Logs an event. An event is for example a click or a setting change.
+
+  * `event` _{Object}_
+  * `event.title` _{string}_ - The title of the event.
+  * `event.url` _{string}_ - An absolute url to identify this event without protocol and so on.
+
+##### tracker.trackException( `exception` )
+Logs an exception.
+
+  * `exception` _{Object}_
+  * `exception.error` _{Error}_ - An optional instance of Error
+  * `exception.file` _{string}_ - The name of the file where the exception was thrown.
+  * `exception.line` _{string}_ - The number of the line where the exception was thrown.
+  * `exception.message` _{string}_ - The exception message.
+  * `exception.type` _{string}_ - The name of the exception, for example TypeError.
+  * `exception.errorCode` _{string}_ - An absolute url to identify this event without protocol and so on.
+
+##### tracker.trackGoal( `goalId` )
+Track a specific goal. Make sure you've set a document title before. Uses the last set url automatically.
+
+  * `goalId` _{number}_ - goalId
+
+##### tracker.trackLink( `sourceUrl`, `linkType` )
+Logs an outlink or download link.
+
+  * `sourceUrl` _{string}_ - An absolute url without protocol and so on
+  * `linkType` _{string}_ - Either 'download' or 'outlink'
+
+##### tracker.trackPageView( )
+Log a page view. A page view is for example a new opened window or navigating to an already opened window. Make sure you've set a document title and current url before.
+
+##### tracker.trackWindow( `title`, `windowUrl` )
+Tracks a window. It'll always detect the controller / action depending on the given url. Call this method if a window gets focus. For more information see `trackPageView`.
+
+  * `title` _{string}_ - title
+  * `windowUrl` _{string}_ - A window url, for example "site/index". In this case, "site" is the controller and "index" is the action. It'll track the Title "site index" and the url "/window/site/index".
+
+---
+
+## License
+
+[The MIT License (MIT)](LICENSE)
