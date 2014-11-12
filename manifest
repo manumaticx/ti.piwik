@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1.0
+apiversion: 2
+description: Piwik Analytics Module
+author: Manuel Lehner <manumaticx@gmail.com>
+license: MIT
+copyright: 2014 Manuel Lehner
+
+
+# these should not be edited
+name: ti.piwik
+moduleid: ti.piwik
+guid: e9312297-cbcb-4edc-a2fe-ab300c834725
+platform: commonjs
+minsdk: 3.4.0.GA
