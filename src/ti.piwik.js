@@ -87,6 +87,16 @@ function Tracker (args) {
      * @private
      */
     var documentTitle   = '';
+    
+    /**
+     * Holds the current user identifier
+     * 
+     * 
+     * @type 	  null|string
+     * 
+     * @private
+     */
+    var uid = null;
 
     /**
      * Holds the current url. This url will be used in all trackings until another current url is set.
@@ -476,6 +486,21 @@ function Tracker (args) {
         return this;
     };
 
+
+
+    /**
+     * Sets (overrides) the current user id.
+     *
+     * @param  {string}  uid 
+     *
+     * @type   Piwik.Tracker
+     */
+    this.setUserID = function (user_id) {
+        uid = user_id;
+
+        return this;
+    };
+
     /**
      * Set custom variable within this visit. All set custom variables will be recognized in the next tracking and
      * reset afterwards.
@@ -567,6 +592,7 @@ function Tracker (args) {
 
         // session based parameters
         parameter.idsite = this.siteId;
+        parameter.uid    = uid;
         parameter.rand   = String(Math.random()).slice(2,8);
         parameter.h      = now.getHours();
         parameter.m      = now.getMinutes();
