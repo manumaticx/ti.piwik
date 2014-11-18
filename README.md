@@ -128,7 +128,10 @@ returns the `tracker`.
 Logs an event. An event is for example a click or a setting change.
 
   * `event` _{Object}_
-  * `event.title` _{string}_ - The title of the event.
+  * `event.category` _{string}_ - The category of the event. - Defaults to the document title
+  * `event.action` _{string}_ - The action of the event.
+  * `event.name` _{string}_ - The name of the event.
+  * `event.value` _{string}_ - The value of the event.
   * `event.url` _{string}_ - An absolute url to identify this event without protocol and so on.
 
 ##### tracker.trackException( `exception` )
