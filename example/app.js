@@ -22,8 +22,11 @@ tracker.trackWindow("Main", "index");
 
 // track an event
 tracker.trackEvent({
-  title: "Test event",
-  url: "index"
+	category: "gallery",
+	action: "view",
+	name: "image",
+	value: "image_id_0123",
+	url: "index/list/detail/image"
 });
 
 // track an exception
