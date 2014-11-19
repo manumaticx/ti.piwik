@@ -107,6 +107,13 @@ Sets (overrides) the current url.
 
 returns the `tracker`.
 
+##### tracker.setUserID( `user_id` )
+Sets (overrides) the current user identifier.
+
+  * `user_id` _{string}_ Your unique identifier for the current logged in user.
+
+returns the `tracker`.
+
 ##### tracker.setCustomVariable( `index`, `name`, `value`, `scope` )
 Set custom variable within this visit. All set custom variables will be recognized in the next tracking and reset afterwards.
 
@@ -128,7 +135,10 @@ returns the `tracker`.
 Logs an event. An event is for example a click or a setting change.
 
   * `event` _{Object}_
-  * `event.title` _{string}_ - The title of the event.
+  * `event.category` _{string}_ - The category of the event. - Defaults to the document title
+  * `event.action` _{string}_ - The action of the event.
+  * `event.name` _{string}_ - The name of the event.
+  * `event.value` _{string}_ - The value of the event.
   * `event.url` _{string}_ - An absolute url to identify this event without protocol and so on.
 
 ##### tracker.trackException( `exception` )

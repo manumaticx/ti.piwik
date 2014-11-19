@@ -1,4 +1,4 @@
-# ti.piwik [![gittio](http://img.shields.io/badge/gittio-0.1.0-00B4CC.svg)](http://gitt.io/component/ti.piwik)
+# ti.piwik [![gittio](http://img.shields.io/badge/gittio-0.1.1-00B4CC.svg)](http://gitt.io/component/ti.piwik)
 > Piwik Analytics Module for Titanium
 
 ## Description
