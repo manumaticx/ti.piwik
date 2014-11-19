@@ -107,6 +107,13 @@ Sets (overrides) the current url.
 
 returns the `tracker`.
 
+##### tracker.setUserID( `user_id` )
+Sets (overrides) the current user identifier.
+
+  * `user_id` _{string}_ Your unique identifier for the current logged in user.
+
+returns the `tracker`.
+
 ##### tracker.setCustomVariable( `index`, `name`, `value`, `scope` )
 Set custom variable within this visit. All set custom variables will be recognized in the next tracking and reset afterwards.
 
