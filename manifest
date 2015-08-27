@@ -7,7 +7,7 @@ apiversion: 2
 description: Piwik Analytics Module
 author: Manuel Lehner <manumaticx@gmail.com>
 license: MIT
-copyright: 2014 Manuel Lehner
+copyright: 2014 GOYYA Systems GmbH & Co. KG
 
 
 # these should not be edited

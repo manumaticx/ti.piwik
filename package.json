@@ -7,13 +7,14 @@
   ],
   "version": "0.1.1",
   "author": "Manuel Lehner <manumaticx@gmail.com>",
+  "organization": "GOYYA Systems GmbH & Co. KG",
   "main": "./src/ti.piwik.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/manumaticx/ti.piwik.git"
+    "url": "git://github.com/goyya/ti.piwik.git"
   },
   "devDependencies": {
     "mocha": "*",

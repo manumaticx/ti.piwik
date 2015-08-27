@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
     uglify : {
       options : {
-        banner : '/* <%= pkg.name %> <%= pkg.version %> \n' + ' * <%= pkg.description %>\n' + ' * (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' + ' */\n'
+        banner : '/* <%= pkg.name %> <%= pkg.version %> \n' + ' * <%= pkg.description %>\n' + ' * (c) <%= grunt.template.today("yyyy") %> <%= pkg.organization %>\n' + ' */\n'
       },
       dist : {
         files : {
